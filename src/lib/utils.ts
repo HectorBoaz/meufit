@@ -45,9 +45,10 @@ export function formatNumber(n: number) {
   return Number.isInteger(n) ? String(n) : n.toFixed(1).replace('.', ',');
 }
 
-/** Dias (chave AAAA-MM-DD) da semana atual, começando no domingo. */
-export function currentWeekKeys() {
-  const now = new Date();
+/** Dias (chave AAAA-MM-DD) da semana de `todayKey`, começando no domingo. */
+export function currentWeekKeys(todayKey: string) {
+  const [y, m, d] = todayKey.split('-').map(Number);
+  const now = new Date(y, m - 1, d);
   const start = new Date(now);
   start.setDate(now.getDate() - now.getDay());
   return Array.from({ length: 7 }, (_, i) => {

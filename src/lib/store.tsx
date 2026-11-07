@@ -39,6 +39,22 @@ export function defaultState(): AppState {
     meals: ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar'],
     mealsDone: {},
     reminders: [],
+    profile: {
+      configured: false,
+      name: '',
+      sex: 'f',
+      age: 30,
+      height: 165,
+      weight: 65,
+      activity: 1.375,
+      goal: 'manter',
+      kcalOverride: null,
+      waterOverride: null,
+    },
+    foods: [],
+    foodLog: [],
+    recentFoodIds: [],
+    fasting: { protocolHours: 12, active: null, history: [] },
   };
 }
 
@@ -58,6 +74,18 @@ export function normalizeState(raw: unknown): AppState {
     meals: Array.isArray(r.meals) && r.meals.length ? r.meals : base.meals,
     mealsDone: r.mealsDone && typeof r.mealsDone === 'object' ? r.mealsDone : {},
     reminders: Array.isArray(r.reminders) ? r.reminders : [],
+    profile: r.profile && typeof r.profile === 'object' ? { ...base.profile, ...r.profile } : base.profile,
+    foods: Array.isArray(r.foods) ? r.foods : [],
+    foodLog: Array.isArray(r.foodLog) ? r.foodLog : [],
+    recentFoodIds: Array.isArray(r.recentFoodIds) ? r.recentFoodIds : [],
+    fasting:
+      r.fasting && typeof r.fasting === 'object'
+        ? {
+            protocolHours: typeof r.fasting.protocolHours === 'number' ? r.fasting.protocolHours : 12,
+            active: r.fasting.active ?? null,
+            history: Array.isArray(r.fasting.history) ? r.fasting.history : [],
+          }
+        : base.fasting,
   };
 }
 

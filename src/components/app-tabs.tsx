@@ -10,17 +10,21 @@ export default function AppTabs() {
         <NativeTabs.Trigger.Label>Hoje</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="sun.max.fill" />
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="dieta">
+        <NativeTabs.Trigger.Label>Dieta</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="fork.knife" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="jejum">
+        <NativeTabs.Trigger.Label>Jejum</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="timer" />
+      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="treinos">
         <NativeTabs.Trigger.Label>Treinos</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="dumbbell.fill" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="evolucao">
-        <NativeTabs.Trigger.Label>Evolução</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="chart.line.uptrend.xyaxis" />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="lembretes">
-        <NativeTabs.Trigger.Label>Lembretes</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="bell.fill" />
+      <NativeTabs.Trigger name="mais">
+        <NativeTabs.Trigger.Label>Mais</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="ellipsis.circle.fill" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

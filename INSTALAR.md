@@ -43,10 +43,14 @@
 
 ## Backup dos dados
 
-Os dados ficam só no iPhone. De vez em quando, vá em **Lembretes → Backup → Exportar** e salve no
+Os dados ficam só no iPhone. De vez em quando, vá em **Mais → Backup → Exportar** e salve no
 iCloud Drive. Se um dia precisar reinstalar do zero, use **Restaurar**.
+(Na primeira versão do app o backup ficava em **Lembretes → Backup**.)
 
 ## Atualizar o app
 
 Sempre que o código mudar, o GitHub gera um novo `MaizaFit.ipa` no mesmo link do passo 10.
-Baixe e instale de novo pelo AltStore (passo 12) – os dados são mantidos.
+
+1. **Antes**, faça um backup (**Exportar**) por segurança.
+2. Baixe o novo `MaizaFit.ipa` e instale pelo AltStore (passo 12) – por cima do app atual.
+   Os dados são mantidos.

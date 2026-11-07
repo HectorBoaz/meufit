@@ -39,7 +39,11 @@ export default function Evolucao() {
       if (v > 0) entry[m.key] = v;
     }
     // Um registro por dia: substitui o de hoje se já existir
-    update((s) => ({ ...s, body: [...s.body.filter((b) => b.date !== entry.date), entry] }));
+    update((s) => ({
+      ...s,
+      body: [...s.body.filter((b) => b.date !== entry.date), entry],
+      profile: { ...s.profile, weight: entry.weight },
+    }));
     setWeight('');
     setMeasures({});
     setShowMeasures(false);
@@ -53,8 +57,6 @@ export default function Evolucao() {
 
   return (
     <Screen>
-      <T kind="title">Evolução</T>
-
       <Card>
         <T kind="heading">Registrar hoje</T>
         <Input

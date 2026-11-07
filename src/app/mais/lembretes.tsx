@@ -1,15 +1,12 @@
-import * as DocumentPicker from 'expo-document-picker';
-import { File, Paths } from 'expo-file-system';
-import * as Sharing from 'expo-sharing';
 import { useState } from 'react';
 import { Alert, Pressable, Switch, View } from 'react-native';
 
 import { Button, Card, Chip, Input, Row, Screen, Stepper, T } from '@/components/ui';
 import { useColors } from '@/constants/theme';
 import { ensurePermission, MAX_SCHEDULED, slotsFor, totalSlots } from '@/lib/notifications';
-import { normalizeState, useStore } from '@/lib/store';
+import { useStore } from '@/lib/store';
 import type { Reminder } from '@/lib/types';
-import { dateKey, formatTime, uid, WEEKDAYS_SHORT, weekdaysLabel } from '@/lib/utils';
+import { formatTime, uid, WEEKDAYS_SHORT, weekdaysLabel } from '@/lib/utils';
 
 type Preset = { label: string; make: () => Reminder[] };
 
@@ -43,13 +40,21 @@ const PRESETS: Preset[] = [
     ],
   },
   { label: '💊 Suplemento', make: () => [r('Suplemento 💊', 'Não esqueça de tomar!', 9, 0)] },
+  {
+    label: '📝 Anotar o que comeu',
+    make: () => [r('Já anotou suas refeições? 📝', 'Registre o que comeu hoje no Maiza Fit.', 21, 0)],
+  },
+  {
+    label: '⚖️ Pesagem semanal',
+    make: () => [r('Dia de se pesar ⚖️', 'Em jejum, logo ao acordar. Registre em Evolução.', 7, 0, [2])],
+  },
 ];
 
 const emptyForm = () => r('', '', 8, 0);
 
 export default function Lembretes() {
   const c = useColors();
-  const { state, update, replace } = useStore();
+  const { state, update } = useStore();
   const [form, setForm] = useState<Reminder | null>(null);
   const used = totalSlots(state.reminders);
 
@@ -112,38 +117,10 @@ export default function Lembretes() {
       },
     ]);
 
-  const exportBackup = async () => {
-    try {
-      const file = new File(Paths.cache, `maizafit-backup-${dateKey()}.json`);
-      file.create({ overwrite: true });
-      await file.write(JSON.stringify(state, null, 2));
-      await Sharing.shareAsync(file.uri, { mimeType: 'application/json', UTI: 'public.json' });
-    } catch (e) {
-      Alert.alert('Erro ao exportar', String(e));
-    }
-  };
-
-  const importBackup = async () => {
-    const res = await DocumentPicker.getDocumentAsync({ type: 'application/json', copyToCacheDirectory: true });
-    if (res.canceled || !res.assets?.[0]) return;
-    try {
-      const text = await new File(res.assets[0].uri).text();
-      const data = normalizeState(JSON.parse(text));
-      Alert.alert('Restaurar backup?', 'Os dados atuais do app serão substituídos pelos do arquivo.', [
-        { text: 'Cancelar', style: 'cancel' },
-        { text: 'Restaurar', style: 'destructive', onPress: () => replace(data) },
-      ]);
-    } catch {
-      Alert.alert('Arquivo inválido', 'Não consegui ler esse backup.');
-    }
-  };
-
   const sorted = [...state.reminders].sort((a, b) => a.hour * 60 + a.minute - (b.hour * 60 + b.minute));
 
   return (
     <Screen>
-      <T kind="title">Lembretes</T>
-
       {/* Formulário */}
       {form ? (
         <Card>
@@ -241,39 +218,6 @@ export default function Lembretes() {
             <Button key={p.label} title={p.label} variant="soft" small onPress={() => addPreset(p)} />
           ))}
         </View>
-      </Card>
-
-      {/* Ajustes */}
-      <Card>
-        <T kind="heading">Ajustes</T>
-        <Row style={{ justifyContent: 'space-between' }}>
-          <T kind="muted">Meta de água (copos)</T>
-          <Stepper value={state.waterGoal} min={1} max={20} onChange={(waterGoal) => update((s) => ({ ...s, waterGoal }))} />
-        </Row>
-        <Row style={{ justifyContent: 'space-between' }}>
-          <T kind="muted">Tamanho do copo</T>
-          <Stepper
-            value={state.cupMl}
-            min={100}
-            max={1000}
-            step={50}
-            format={(v) => `${v}ml`}
-            onChange={(cupMl) => update((s) => ({ ...s, cupMl }))}
-          />
-        </Row>
-      </Card>
-
-      {/* Backup */}
-      <Card>
-        <T kind="heading">Backup</T>
-        <T kind="muted">
-          Salve uma cópia dos seus dados de vez em quando (no app Arquivos ou no iCloud Drive). Se o app precisar ser
-          reinstalado, é só restaurar.
-        </T>
-        <Row>
-          <Button title="Exportar" variant="soft" style={{ flex: 1 }} onPress={exportBackup} />
-          <Button title="Restaurar" variant="soft" style={{ flex: 1 }} onPress={importBackup} />
-        </Row>
       </Card>
     </Screen>
   );
