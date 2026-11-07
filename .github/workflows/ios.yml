@@ -75,14 +75,14 @@ jobs:
           fi
           mkdir -p Payload
           cp -R "$APP" Payload/
-          zip -qry MeuFit.ipa Payload
-          ls -lh MeuFit.ipa
+          zip -qry MaizaFit.ipa Payload
+          ls -lh MaizaFit.ipa
 
       - name: Enviar artefato
         uses: actions/upload-artifact@v4
         with:
-          name: MeuFit-ipa
-          path: MeuFit.ipa
+          name: MaizaFit-ipa
+          path: MaizaFit.ipa
           retention-days: 30
 
       - name: Publicar na release "latest"
@@ -90,7 +90,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete latest --yes --cleanup-tag 2>/dev/null || true
-          gh release create latest MeuFit.ipa \
-            --title "Meu Fit – build ${{ github.run_number }}" \
-            --notes "Build automático do commit ${{ github.sha }}. Baixe o MeuFit.ipa e instale pelo AltStore." \
+          gh release create latest MaizaFit.ipa \
+            --title "Maiza Fit – build ${{ github.run_number }}" \
+            --notes "Build automático do commit ${{ github.sha }}. Baixe o MaizaFit.ipa e instale pelo AltStore." \
             --latest

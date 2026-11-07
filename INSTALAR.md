@@ -1,4 +1,4 @@
-# Como instalar o Meu Fit no iPhone (via AltStore)
+# Como instalar o Maiza Fit no iPhone (via AltStore)
 
 > Feito uma vez só. Depois, o AltStore renova o app sozinho toda semana.
 
@@ -24,14 +24,14 @@
 8. No iPhone: **Ajustes → Geral → VPN e Gerenciamento de Dispositivo** → toque no seu Apple ID → **Confiar**.
 9. **Ajustes → Privacidade e Segurança → Modo de Desenvolvedor** → ativar → o iPhone reinicia → confirme **Ativar**.
 
-## Parte 4 – Instalar o Meu Fit
+## Parte 4 – Instalar o Maiza Fit
 
 10. No iPhone, abra o **Safari** e acesse:
     **https://github.com/HectorBoaz/meufit/releases/latest**
-11. Toque em **MeuFit.ipa** para baixar (vai para o app Arquivos → Downloads).
-12. Abra o **AltStore** → aba **My Apps** → botão **+** (canto superior) → escolha o `MeuFit.ipa`.
+11. Toque em **MaizaFit.ipa** para baixar (vai para o app Arquivos → Downloads).
+12. Abra o **AltStore** → aba **My Apps** → botão **+** (canto superior) → escolha o `MaizaFit.ipa`.
     *(O PC precisa estar ligado com o AltServer aberto e na mesma rede Wi‑Fi.)*
-13. Pronto! Abra o **Meu Fit** e, quando ele pedir, **permita as notificações**.
+13. Pronto! Abra o **Maiza Fit** e, quando ele pedir, **permita as notificações**.
 
 ## Renovação semanal (importante)
 
@@ -48,5 +48,5 @@ iCloud Drive. Se um dia precisar reinstalar do zero, use **Restaurar**.
 
 ## Atualizar o app
 
-Sempre que o código mudar, o GitHub gera um novo `MeuFit.ipa` no mesmo link do passo 10.
+Sempre que o código mudar, o GitHub gera um novo `MaizaFit.ipa` no mesmo link do passo 10.
 Baixe e instale de novo pelo AltStore (passo 12) – os dados são mantidos.

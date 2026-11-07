@@ -67,7 +67,7 @@ export default function Lembretes() {
     if (!ok) {
       Alert.alert(
         'Notificações desativadas',
-        'Para receber os lembretes, ative as notificações em Ajustes → Notificações → Meu Fit.',
+        'Para receber os lembretes, ative as notificações em Ajustes → Notificações → Maiza Fit.',
       );
     }
   };
@@ -114,7 +114,7 @@ export default function Lembretes() {
 
   const exportBackup = async () => {
     try {
-      const file = new File(Paths.cache, `meufit-backup-${dateKey()}.json`);
+      const file = new File(Paths.cache, `maizafit-backup-${dateKey()}.json`);
       file.create({ overwrite: true });
       await file.write(JSON.stringify(state, null, 2));
       await Sharing.shareAsync(file.uri, { mimeType: 'application/json', UTI: 'public.json' });

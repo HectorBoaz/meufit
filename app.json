@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Meu Fit",
-    "slug": "meufit",
+    "name": "Maiza Fit",
+    "slug": "maizafit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "meufit",
+    "scheme": "maizafit",
     "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "com.hectorboaz.meufit",
