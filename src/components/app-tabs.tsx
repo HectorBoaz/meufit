@@ -1,31 +1,26 @@
 import { NativeTabs } from 'expo-router/native-tabs';
-import { useColorScheme } from 'react-native';
 
-import { Colors } from '@/constants/theme';
+import { useColors } from '@/constants/theme';
 
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'dark' ? 'dark' : 'light'];
-
+  const c = useColors();
   return (
-    <NativeTabs
-      backgroundColor={colors.background}
-      indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
+    <NativeTabs tintColor={c.accent}>
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/home.png')}
-          renderingMode="template"
-        />
+        <NativeTabs.Trigger.Label>Hoje</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="sun.max.fill" />
       </NativeTabs.Trigger>
-
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
+      <NativeTabs.Trigger name="treinos">
+        <NativeTabs.Trigger.Label>Treinos</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="dumbbell.fill" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="evolucao">
+        <NativeTabs.Trigger.Label>Evolução</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="chart.line.uptrend.xyaxis" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="lembretes">
+        <NativeTabs.Trigger.Label>Lembretes</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="bell.fill" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
